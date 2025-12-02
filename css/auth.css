@@ -1,0 +1,333 @@
+/* ==========================================================================
+   ESTILOS DE AUTENTICAÇÃO (LOGIN E CADASTRO)
+   ========================================================================== */
+
+/* Container principal de autenticação */
+.auth-wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-md);
+    background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efeito de fundo animado */
+.auth-wrapper::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Card de autenticação */
+.auth-card {
+    background: rgba(44, 44, 44, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    padding: var(--spacing-xl);
+    width: 100%;
+    max-width: 450px;
+    position: relative;
+    z-index: 1;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+/* Logo/Branding */
+.auth-brand {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.auth-brand h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-xs);
+    letter-spacing: 1px;
+}
+
+.auth-brand p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Título do formulário */
+.auth-title {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Grupos de formulário */
+.form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+/* Inputs */
+.form-input {
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: all var(--transition-normal);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    background-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+.form-input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Input com ícone */
+.input-group {
+    position: relative;
+}
+
+.input-icon {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color var(--transition-fast);
+}
+
+.input-icon:hover {
+    color: var(--color-primary);
+}
+
+/* Checkbox e opções */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+    font-size: 0.85rem;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.checkbox-group label {
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.forgot-password {
+    color: var(--color-primary);
+    font-weight: 500;
+    transition: color var(--transition-fast);
+}
+
+.forgot-password:hover {
+    color: #c4a037;
+    text-decoration: underline;
+}
+
+/* Botões */
+.auth-button {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, var(--color-primary) 0%, #c4a037 100%);
+    border: none;
+    border-radius: var(--radius-md);
+    color: var(--bg-dark);
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    margin-bottom: var(--spacing-sm);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.auth-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+}
+
+.auth-button:active {
+    transform: translateY(0);
+}
+
+/* Divisor */
+.auth-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: var(--spacing-md) 0;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.auth-divider span {
+    padding: 0 var(--spacing-sm);
+}
+
+/* Botões sociais */
+.social-buttons {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.social-btn {
+    flex: 1;
+    padding: 0.8rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.social-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+}
+
+/* Links de alternância */
+.auth-switch {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.auth-switch a {
+    color: var(--color-primary);
+    font-weight: 600;
+    margin-left: 0.3rem;
+}
+
+.auth-switch a:hover {
+    text-decoration: underline;
+}
+
+/* Mensagens de erro/sucesso */
+.auth-message {
+    padding: 0.8rem;
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-md);
+    font-size: 0.9rem;
+    display: none;
+}
+
+.auth-message.show {
+    display: block;
+}
+
+.auth-message.error {
+    background-color: rgba(220, 53, 69, 0.2);
+    border: 1px solid rgba(220, 53, 69, 0.5);
+    color: #ff6b6b;
+}
+
+.auth-message.success {
+    background-color: rgba(40, 167, 69, 0.2);
+    border: 1px solid rgba(40, 167, 69, 0.5);
+    color: #51cf66;
+}
+
+/* Responsividade - Tablets */
+@media (max-width: 768px) {
+    .auth-card {
+        padding: var(--spacing-lg);
+    }
+    
+    .auth-brand h1 {
+        font-size: 1.75rem;
+    }
+}
+
+/* Responsividade - Mobile */
+@media (max-width: 480px) {
+    .auth-wrapper {
+        padding: var(--spacing-sm);
+    }
+    
+    .auth-card {
+        padding: var(--spacing-md);
+    }
+    
+    .auth-brand h1 {
+        font-size: 1.5rem;
+    }
+    
+    .form-input {
+        padding: 0.75rem 1rem;
+        font-size: 0.95rem;
+    }
+    
+    .auth-button {
+        padding: 0.85rem;
+        font-size: 0.95rem;
+    }
+    
+    .social-buttons {
+        flex-direction: column;
+    }
+    
+    .form-options {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        align-items: flex-start;
+    }
+}

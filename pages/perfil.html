@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Seu perfil e preferências de fragrâncias">
+    <title>Meu Perfil - Fragancia</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/perfil.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navegação -->
+    <header>
+        <nav class="navbar">
+            <a href="../index.html" class="logo">
+                Fragancia
+            </a>
+            
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-links" id="nav-links">
+                <li><a href="../index.html">Início</a></li>
+                <li><a href="#features">Guias</a></li>
+                <li><a href="#stats">Favoritos</a></li>
+                <li>
+                    <div class="user-menu">
+                        <div class="user-avatar" id="nav-avatar">
+                            JD
+                        </div>
+                        <div class="user-dropdown">
+                            <a href="perfil.html">Meu Perfil</a>
+                            <a href="#" id="logout-btn">Sair</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="perfil-wrapper">
+        <div class="perfil-container">
+            <div class="perfil-grid">
+                <!-- Sidebar do Perfil -->
+                <aside class="perfil-sidebar">
+                    <div class="user-avatar-large" id="profile-avatar">
+                        JD
+                    </div>
+                    <div class="user-info">
+                        <h2 id="user-name">João da Silva</h2>
+                        <p id="user-email">joao@email.com</p>
+                    </div>
+
+                    <!-- Navegação do Perfil -->
+                    <nav>
+                        <ul class="perfil-nav">
+                            <li>
+                                <a href="#" class="active" data-section="info">
+                                    <i class="fas fa-user"></i>
+                                    Informações Pessoais
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" data-section="favorites">
+                                    <i class="fas fa-heart"></i>
+                                    Meus Favoritos
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" data-section="history">
+                                    <i class="fas fa-history"></i>
+                                    Histórico de Quizzes
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" data-section="preferences">
+                                    <i class="fas fa-cog"></i>
+                                    Preferências
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+
+                <!-- Conteúdo Principal -->
+                <div class="perfil-content">
+                    <!-- Seção: Informações Pessoais -->
+                    <section id="section-info" class="perfil-section active">
+                        <h1>
+                            <i class="fas fa-user"></i>
+                            Informações Pessoais
+                        </h1>
+
+                        <!-- Estatísticas do Usuário -->
+                        <div class="perfil-section">
+                            <h3>
+                                <i class="fas fa-chart-line"></i>
+                                Suas Estatísticas
+                            </h3>
+                            <div class="user-stats">
+                                <div class="stat-card">
+                                    <h4>12</h4>
+                                    <p>Perfumes Favoritos</p>
+                                </div>
+                                <div class="stat-card">
+                                    <h4>5</h4>
+                                    <p>Quizzes Realizados</p>
+                                </div>
+                                <div class="stat-card">
+                                    <h4>28</h4>
+                                    <p>Avaliações Feitas</p>
+                                </div>
+                                <div class="stat-card">
+                                    <h4>3</h4>
+                                    <p>Meses Membro</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Formulário de Edição -->
+                        <div class="perfil-section">
+                            <h3>
+                                <i class="fas fa-edit"></i>
+                                Editar Perfil
+                            </h3>
+                            <form class="perfil-form" id="edit-profile-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="edit-name">Nome Completo</label>
+                                        <input 
+                                            type="text" 
+                                            id="edit-name" 
+                                            class="form-input" 
+                                            value="João da Silva"
+                                        >
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="edit-email">Email</label>
+                                        <input 
+                                            type="email" 
+                                            id="edit-email" 
+                                            class="form-input" 
+                                            value="joao@email.com"
+                                        >
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="edit-phone">Telefone</label>
+                                        <input 
+                                            type="tel" 
+                                            id="edit-phone" 
+                                            class="form-input" 
+                                            placeholder="(00) 00000-0000"
+                                        >
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="edit-birthdate">Data de Nascimento</label>
+                                        <input 
+                                            type="date" 
+                                            id="edit-birthdate" 
+                                            class="form-input"
+                                        >
+                                    </div>
+                                </div>
+
+                                <div class="perfil-actions">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-save"></i>
+                                        Salvar Alterações
+                                    </button>
+                                    <button type="button" class="btn btn-secondary">
+                                        <i class="fas fa-times"></i>
+                                        Cancelar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+
+                    <!-- Seção: Favoritos -->
+                    <section id="section-favorites" class="perfil-section" style="display: none;">
+                        <h1>
+                            <i class="fas fa-heart"></i>
+                            Meus Perfumes Favoritos
+                        </h1>
+
+                        <div class="favorites-grid">
+                            <div class="favorite-item">
+                                <img src="../images/tom-ford-tobacco-vanille.png" alt="Tobacco Vanille">
+                                <h4>Tobacco Vanille</h4>
+                                <p>Tom Ford</p>
+                            </div>
+                            <div class="favorite-item">
+                                <img src="../images/baccarat-rouge-540.png" alt="Baccarat Rouge 540">
+                                <h4>Baccarat Rouge 540</h4>
+                                <p>Maison Francis Kurkdjian</p>
+                            </div>
+                            <div class="favorite-item">
+                                <img src="../images/nishane-ani.png" alt="Nishane Ani">
+                                <h4>Nishane Ani</h4>
+                                <p>Nishane</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Seção: Histórico -->
+                    <section id="section-history" class="perfil-section" style="display: none;">
+                        <h1>
+                            <i class="fas fa-history"></i>
+                            Histórico de Quizzes
+                        </h1>
+
+                        <div class="quiz-history">
+                            <div class="quiz-item">
+                                <div class="quiz-item-info">
+                                    <h4>Quiz Completo - Perfume para Noite</h4>
+                                    <p>Realizado em 15/11/2024 às 14:30</p>
+                                </div>
+                                <div class="quiz-item-actions">
+                                    <button class="btn btn-sm btn-primary">Ver Resultados</button>
+                                </div>
+                            </div>
+
+                            <div class="quiz-item">
+                                <div class="quiz-item-info">
+                                    <h4>Quiz Rápido - Fragrância Diária</h4>
+                                    <p>Realizado em 10/11/2024 às 10:15</p>
+                                </div>
+                                <div class="quiz-item-actions">
+                                    <button class="btn btn-sm btn-primary">Ver Resultados</button>
+                                </div>
+                            </div>
+
+                            <div class="quiz-item">
+                                <div class="quiz-item-info">
+                                    <h4>Quiz Completo - Ocasião Especial</h4>
+                                    <p>Realizado em 05/11/2024 às 16:45</p>
+                                </div>
+                                <div class="quiz-item-actions">
+                                    <button class="btn btn-sm btn-primary">Ver Resultados</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Seção: Preferências -->
+                    <section id="section-preferences" class="perfil-section" style="display: none;">
+                        <h1>
+                            <i class="fas fa-cog"></i>
+                            Preferências
+                        </h1>
+
+                        <form class="perfil-form">
+                            <div class="perfil-section">
+                                <h3>Notificações</h3>
+                                <div class="form-group">
+                                    <div class="checkbox-group">
+                                        <input type="checkbox" id="notif-email" checked>
+                                        <label for="notif-email">Receber notificações por email</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox-group">
+                                        <input type="checkbox" id="notif-offers" checked>
+                                        <label for="notif-offers">Receber ofertas e promoções</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox-group">
+                                        <input type="checkbox" id="notif-newsletter">
+                                        <label for="notif-newsletter">Assinar newsletter semanal</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="perfil-section">
+                                <h3>Privacidade</h3>
+                                <div class="form-group">
+                                    <div class="checkbox-group">
+                                        <input type="checkbox" id="privacy-profile" checked>
+                                        <label for="privacy-profile">Perfil público</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox-group">
+                                        <input type="checkbox" id="privacy-favorites">
+                                        <label for="privacy-favorites">Mostrar favoritos publicamente</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="perfil-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i>
+                                    Salvar Preferências
+                                </button>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- JavaScript -->
+    <script src="../js/navbar.js"></script>
+    <script src="../js/perfil.js"></script>
+</body>
+</html>

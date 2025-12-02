@@ -1,0 +1,295 @@
+/* ==========================================================================
+   ESTILOS DA PÁGINA INICIAL
+   ========================================================================== */
+
+/* Seção Hero */
+.hero-section {
+    position: relative;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://revistadabiomedicina.com.br/wp-content/uploads/2025/06/best-colognes-to-gift-67605b65861a3.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: brightness(0.4);
+    transition: transform 10s ease;
+}
+
+.hero-section:hover .hero-image {
+    transform: scale(1.1);
+}
+
+/* Overlay gradiente */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(34, 34, 34, 0.3) 0%,
+        rgba(34, 34, 34, 0.8) 100%
+    );
+    z-index: 1;
+}
+
+/* Conteúdo do Hero */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+    padding: 2rem;
+    animation: fadeInUp 1s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-content h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 1.5rem;
+    color: var(--color-primary);
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.hero-content p {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    margin-bottom: 2rem;
+    color: var(--text-primary);
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+}
+
+/* Seção de Boas-vindas */
+.welcome-section {
+    background-color: var(--bg-dark);
+    padding: 5rem 2rem;
+}
+
+.welcome-text {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: var(--bg-card);
+    padding: 4rem;
+    text-align: center;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-text::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+    animation: scan 3s infinite;
+}
+
+@keyframes scan {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+.welcome-text h1 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: 2rem;
+    color: var(--text-primary);
+}
+
+.welcome-text p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+}
+
+/* Botão CTA */
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: linear-gradient(135deg, var(--color-primary), #c4a037);
+    color: var(--bg-dark);
+    padding: 1.2rem 3rem;
+    border-radius: var(--radius-xl);
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all var(--transition-normal);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    margin-top: 1rem;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+    color: var(--bg-dark);
+}
+
+.cta-button .arrow {
+    font-size: 1.5rem;
+    transition: transform var(--transition-normal);
+}
+
+.cta-button:hover .arrow {
+    transform: translateX(5px);
+}
+
+/* Seção de Features/Benefícios */
+.features-section {
+    padding: 5rem 2rem;
+    background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    background-color: var(--bg-card);
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    text-align: center;
+    transition: all var(--transition-normal);
+    border: 1px solid transparent;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--color-primary);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-primary);
+}
+
+.feature-card h3 {
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.feature-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Seção de Estatísticas */
+.stats-section {
+    background-color: var(--bg-card);
+    padding: 4rem 2rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.stat-item h2 {
+    font-size: 3rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+.stat-item p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+/* Responsividade - Tablets */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 400px;
+    }
+    
+    .welcome-section {
+        padding: 3rem 1rem;
+    }
+    
+    .welcome-text {
+        padding: 2.5rem 2rem;
+    }
+    
+    .cta-button {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+    
+    .features-section {
+        padding: 3rem 1rem;
+    }
+    
+    .stats-section {
+        padding: 3rem 1rem;
+    }
+    
+    .stat-item h2 {
+        font-size: 2.5rem;
+    }
+}
+
+/* Responsividade - Mobile */
+@media (max-width: 480px) {
+    .hero-section {
+        height: 350px;
+    }
+    
+    .welcome-text {
+        padding: 2rem 1.5rem;
+    }
+    
+    .cta-button {
+        padding: 0.9rem 1.8rem;
+        font-size: 0.95rem;
+    }
+    
+    .features-grid {
+        gap: 1.5rem;
+    }
+    
+    .feature-card {
+        padding: 2rem;
+    }
+    
+    .stats-grid {
+        gap: 2rem;
+    }
+}
