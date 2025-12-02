@@ -133,45 +133,70 @@
                   <i class="fas fa-edit"></i>
                   Editar Perfil
                 </h3>
-                <form class="perfil-form" id="edit-profile-form">
-                  <div class="form-row">
-                    <div class="form-group">
-                      <label for="edit-name">Nome Completo</label>
-                      <input
-                        type="text"
-                        id="edit-name"
-                        class="form-input"
-                        value="João da Silva"
-                      />
+                <form
+                  class="perfil-form perfil-form-modern"
+                  id="edit-profile-form"
+                >
+                  <div class="form-card">
+                    <div class="form-card-header">
+                      <i class="fas fa-id-card"></i>
+                      <span>Informações Pessoais</span>
                     </div>
-                    <div class="form-group">
-                      <label for="edit-email">Email</label>
-                      <input
-                        type="email"
-                        id="edit-email"
-                        class="form-input"
-                        value="joao@email.com"
-                      />
-                    </div>
-                  </div>
 
-                  <div class="form-row">
-                    <div class="form-group">
-                      <label for="edit-phone">Telefone</label>
-                      <input
-                        type="tel"
-                        id="edit-phone"
-                        class="form-input"
-                        placeholder="(00) 00000-0000"
-                      />
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label for="edit-name">
+                          <i class="fas fa-user"></i>
+                          Nome Completo
+                        </label>
+                        <input
+                          type="text"
+                          id="edit-name"
+                          class="form-input"
+                          value="João da Silva"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="edit-email">
+                          <i class="fas fa-envelope"></i>
+                          Email
+                        </label>
+                        <input
+                          type="email"
+                          id="edit-email"
+                          class="form-input"
+                          value="joao@email.com"
+                        />
+                      </div>
                     </div>
-                    <div class="form-group">
-                      <label for="edit-birthdate">Data de Nascimento</label>
-                      <input
-                        type="date"
-                        id="edit-birthdate"
-                        class="form-input"
-                      />
+
+                    <div class="form-row">
+                      <div class="form-group">
+                        <label for="edit-phone">
+                          <i class="fas fa-phone"></i>
+                          Telefone
+                        </label>
+                        <div class="input-with-icon">
+                          <i class="fas fa-mobile-alt input-icon"></i>
+                          <input
+                            type="tel"
+                            id="edit-phone"
+                            class="form-input"
+                            placeholder="(00) 00000-0000"
+                          />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="edit-birthdate">
+                          <i class="fas fa-calendar-alt"></i>
+                          Data de Nascimento
+                        </label>
+                        <input
+                          type="date"
+                          id="edit-birthdate"
+                          class="form-input"
+                        />
+                      </div>
                     </div>
                   </div>
 
