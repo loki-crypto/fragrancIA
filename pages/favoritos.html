@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Seus perfumes favoritos - Fragancia" />
+    <title>Meus Favoritos - Fragancia</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/navbar.css" />
+    <link rel="stylesheet" href="../css/favoritos.css" />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navegação -->
+    <header>
+      <nav class="navbar">
+        <a href="../index.html" class="logo"> FragancIA </a>
+
+        <button
+          class="mobile-menu-toggle"
+          id="mobile-menu-toggle"
+          aria-label="Menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <ul class="nav-links" id="nav-links">
+          <li><a href="../index.html">Início</a></li>
+          <li><a href="../index.html#features">Guias</a></li>
+          <li><a href="favoritos.html" class="active">Estatisticas</a></li>
+          <li>
+            <div class="user-menu">
+              <div class="user-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="user-dropdown">
+                <a href="perfil.html">Meu Perfil</a>
+                <a href="login.html">Fazer Login</a>
+                <a href="cadastro.html">Criar Conta</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="favoritos-wrapper">
+      <div class="favoritos-container">
+        <!-- Cabeçalho -->
+        <div class="favoritos-header">
+          <div class="header-content">
+            <h1><i class="fas fa-heart"></i> Meus Favoritos</h1>
+            <p>Sua coleção pessoal de fragrâncias especiais</p>
+          </div>
+          <div class="header-stats">
+            <div class="stat-item">
+              <span class="stat-number" id="total-favorites">0</span>
+              <span class="stat-label">Perfumes</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number" id="total-brands">0</span>
+              <span class="stat-label">Marcas</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filtros -->
+        <div class="filters-section">
+          <div class="filter-group">
+            <label for="sort-select">
+              <i class="fas fa-sort"></i>
+              Ordenar por:
+            </label>
+            <select id="sort-select" class="filter-select">
+              <option value="recent">Mais Recentes</option>
+              <option value="name">Nome A-Z</option>
+              <option value="brand">Marca</option>
+            </select>
+          </div>
+
+          <button class="clear-all-btn" id="clear-all-btn">
+            <i class="fas fa-trash-alt"></i>
+            Limpar Todos
+          </button>
+        </div>
+
+        <!-- Grid de Favoritos -->
+        <div class="favorites-grid" id="favorites-grid">
+          <!-- Preenchido dinamicamente via JavaScript -->
+        </div>
+
+        <!-- Estado Vazio -->
+        <div class="empty-state" id="empty-state" style="display: none">
+          <div class="empty-icon">
+            <i class="far fa-heart"></i>
+          </div>
+          <h2>Nenhum favorito ainda</h2>
+          <p>Comece a adicionar perfumes à sua coleção pessoal!</p>
+          <a href="quiz.html" class="btn btn-primary">
+            <i class="fas fa-search"></i>
+            Descobrir Perfumes
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <!-- Modal de Confirmação -->
+    <div class="modal-backdrop hidden" id="confirm-backdrop"></div>
+    <div class="confirm-modal hidden" id="confirm-modal">
+      <div class="confirm-content">
+        <i class="fas fa-exclamation-triangle"></i>
+        <h3>Remover dos Favoritos?</h3>
+        <p>
+          Tem certeza que deseja remover este perfume da sua lista de favoritos?
+        </p>
+        <div class="confirm-actions">
+          <button class="btn btn-secondary" id="cancel-remove">Cancelar</button>
+          <button class="btn btn-danger" id="confirm-remove">Remover</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de Limpar Todos -->
+    <div class="confirm-modal hidden" id="clear-all-modal">
+      <div class="confirm-content">
+        <i class="fas fa-trash-alt"></i>
+        <h3>Limpar Todos os Favoritos?</h3>
+        <p>
+          Esta ação não pode ser desfeita. Todos os seus perfumes favoritos
+          serão removidos.
+        </p>
+        <div class="confirm-actions">
+          <button class="btn btn-secondary" id="cancel-clear">Cancelar</button>
+          <button class="btn btn-danger" id="confirm-clear">Limpar Tudo</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../js/navbar.js"></script>
+    <script src="../js/favoritos.js"></script>
+  </body>
+</html>

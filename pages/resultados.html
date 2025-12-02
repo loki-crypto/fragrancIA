@@ -1,135 +1,199 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Suas recomendações personalizadas de perfumes">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Suas recomendações personalizadas de perfumes"
+    />
     <title>Seus Resultados - Fragancia</title>
-    
-    <link rel="stylesheet" href="../css/global.css">
-    <link rel="stylesheet" href="../css/navbar.css">
-    <link rel="stylesheet" href="../css/results.css">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
+
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/navbar.css" />
+    <link rel="stylesheet" href="../css/results.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
     <header>
-        <nav class="navbar">
-            <a href="../index.html" class="logo">Fragancia</a>
-            
-            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            
-            <ul class="nav-links" id="nav-links">
-                <li><a href="../index.html">Início</a></li>
-                <li><a href="../index.html#features">Guias</a></li>
-                <li><a href="../index.html#stats">Favoritos</a></li>
-                <li>
-                    <div class="user-menu">
-                        <div class="user-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="user-dropdown">
-                            <a href="perfil.html">Meu Perfil</a>
-                            <a href="login.html">Fazer Login</a>
-                            <a href="cadastro.html">Criar Conta</a>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </nav>
+      <nav class="navbar">
+        <a href="../index.html" class="logo">FragancIA</a>
+
+        <button
+          class="mobile-menu-toggle"
+          id="mobile-menu-toggle"
+          aria-label="Menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <ul class="nav-links" id="nav-links">
+          <li><a href="../index.html">Início</a></li>
+          <li><a href="../index.html#features">Guias</a></li>
+          <li><a href="../index.html#stats">Estatisticas</a></li>
+          <li>
+            <div class="user-menu">
+              <div class="user-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="user-dropdown">
+                <a href="perfil.html">Meu Perfil</a>
+                <a href="login.html">Fazer Login</a>
+                <a href="cadastro.html">Criar Conta</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
     </header>
 
     <main class="results-wrapper">
-        <div class="results-container">
-            <div class="results-header">
-                <h1>✨ Suas Melhores Opções!</h1>
-                <p>Baseado nas suas preferências, selecionamos estas fragrâncias especialmente para você.</p>
-            </div>
-
-            <div class="results-grid">
-                <div class="perfume-card" data-perfume-id="tobacco-vanille">
-                    <span class="match-badge">95% Match</span>
-                    <img src="../images/perfumes/tom-ford-tobacco-vanille.png" alt="Tom Ford Tobacco Vanille">
-                    <div class="perfume-info">
-                        <h3>Tobacco Vanille</h3>
-                        <p class="brand">Tom Ford</p>
-                        <p class="description">Um Oriental Especiado quente e opulento. Notas de tabaco com baunilha cremosa.</p>
-                        <div class="card-actions">
-                            <button class="action-btn" onclick="addToFavorites('tobacco-vanille')">
-                                <i class="far fa-heart"></i> Favoritar
-                            </button>
-                            <button class="action-btn" onclick="shareProduct('tobacco-vanille')">
-                                <i class="fas fa-share-alt"></i> Compartilhar
-                            </button>
-                        </div>
-                        <button class="view-details-btn" onclick="showModal('tobacco-vanille')">
-                            Ver Detalhes Completos
-                        </button>
-                    </div>
-                </div>
-
-                <div class="perfume-card" data-perfume-id="baccarat-rouge">
-                    <span class="match-badge">92% Match</span>
-                    <img src="../images/perfumes/baccarat-rouge-540.png" alt="Baccarat Rouge 540">
-                    <div class="perfume-info">
-                        <h3>Baccarat Rouge 540</h3>
-                        <p class="brand">Maison Francis Kurkdjian</p>
-                        <p class="description">Um Âmbar Floral radiante e sofisticado. Luminosidade única e projeção incomparável.</p>
-                        <div class="card-actions">
-                            <button class="action-btn" onclick="addToFavorites('baccarat-rouge')">
-                                <i class="far fa-heart"></i> Favoritar
-                            </button>
-                            <button class="action-btn" onclick="shareProduct('baccarat-rouge')">
-                                <i class="fas fa-share-alt"></i> Compartilhar
-                            </button>
-                        </div>
-                        <button class="view-details-btn" onclick="showModal('baccarat-rouge')">
-                            Ver Detalhes Completos
-                        </button>
-                    </div>
-                </div>
-
-                <div class="perfume-card" data-perfume-id="nishane-ani">
-                    <span class="match-badge">88% Match</span>
-                    <img src="../images/perfumes/nishane-ani.png" alt="Nishane Ani">
-                    <div class="perfume-info">
-                        <h3>Nishane Ani</h3>
-                        <p class="brand">Nishane</p>
-                        <p class="description">Celebrado como o melhor perfume de baunilha. Especiarias vibrantes e doce conforto.</p>
-                        <div class="card-actions">
-                            <button class="action-btn" onclick="addToFavorites('nishane-ani')">
-                                <i class="far fa-heart"></i> Favoritar
-                            </button>
-                            <button class="action-btn" onclick="shareProduct('nishane-ani')">
-                                <i class="fas fa-share-alt"></i> Compartilhar
-                            </button>
-                        </div>
-                        <button class="view-details-btn" onclick="showModal('nishane-ani')">
-                            Ver Detalhes Completos
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="results-actions">
-                <a href="quiz.html" class="btn btn-secondary"><i class="fas fa-redo"></i> Refazer Quiz</a>
-                <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> Voltar ao Início</a>
-            </div>
+      <div class="results-container">
+        <div class="results-header">
+          <h1>✨ Suas Melhores Opções!</h1>
+          <p>
+            Baseado nas suas preferências, selecionamos estas fragrâncias
+            especialmente para você.
+          </p>
         </div>
+
+        <div class="results-grid">
+          <div class="perfume-card" data-perfume-id="tobacco-vanille">
+            <span class="match-badge">95% Match</span>
+            <img
+              src="../images/perfumes/tom-ford-tobacco-vanille.png"
+              alt="Tom Ford Tobacco Vanille"
+            />
+            <div class="perfume-info">
+              <h3>Tobacco Vanille</h3>
+              <p class="brand">Tom Ford</p>
+              <p class="description">
+                Um Oriental Especiado quente e opulento. Notas de tabaco com
+                baunilha cremosa.
+              </p>
+              <div class="card-actions">
+                <button
+                  class="action-btn"
+                  onclick="addToFavorites('tobacco-vanille')"
+                >
+                  <i class="far fa-heart"></i> Favoritar
+                </button>
+                <button
+                  class="action-btn"
+                  onclick="shareProduct('tobacco-vanille')"
+                >
+                  <i class="fas fa-share-alt"></i> Compartilhar
+                </button>
+              </div>
+              <button
+                class="view-details-btn"
+                onclick="showModal('tobacco-vanille')"
+              >
+                Ver Detalhes Completos
+              </button>
+            </div>
+          </div>
+
+          <div class="perfume-card" data-perfume-id="baccarat-rouge">
+            <span class="match-badge">92% Match</span>
+            <img
+              src="../images/perfumes/baccarat-rouge-540.png"
+              alt="Baccarat Rouge 540"
+            />
+            <div class="perfume-info">
+              <h3>Baccarat Rouge 540</h3>
+              <p class="brand">Maison Francis Kurkdjian</p>
+              <p class="description">
+                Um Âmbar Floral radiante e sofisticado. Luminosidade única e
+                projeção incomparável.
+              </p>
+              <div class="card-actions">
+                <button
+                  class="action-btn"
+                  onclick="addToFavorites('baccarat-rouge')"
+                >
+                  <i class="far fa-heart"></i> Favoritar
+                </button>
+                <button
+                  class="action-btn"
+                  onclick="shareProduct('baccarat-rouge')"
+                >
+                  <i class="fas fa-share-alt"></i> Compartilhar
+                </button>
+              </div>
+              <button
+                class="view-details-btn"
+                onclick="showModal('baccarat-rouge')"
+              >
+                Ver Detalhes Completos
+              </button>
+            </div>
+          </div>
+
+          <div class="perfume-card" data-perfume-id="nishane-ani">
+            <span class="match-badge">88% Match</span>
+            <img src="../images/perfumes/nishane-ani.png" alt="Nishane Ani" />
+            <div class="perfume-info">
+              <h3>Nishane Ani</h3>
+              <p class="brand">Nishane</p>
+              <p class="description">
+                Celebrado como o melhor perfume de baunilha. Especiarias
+                vibrantes e doce conforto.
+              </p>
+              <div class="card-actions">
+                <button
+                  class="action-btn"
+                  onclick="addToFavorites('nishane-ani')"
+                >
+                  <i class="far fa-heart"></i> Favoritar
+                </button>
+                <button
+                  class="action-btn"
+                  onclick="shareProduct('nishane-ani')"
+                >
+                  <i class="fas fa-share-alt"></i> Compartilhar
+                </button>
+              </div>
+              <button
+                class="view-details-btn"
+                onclick="showModal('nishane-ani')"
+              >
+                Ver Detalhes Completos
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="results-actions">
+          <a href="quiz.html" class="btn btn-secondary"
+            ><i class="fas fa-redo"></i> Refazer Quiz</a
+          >
+          <a href="../index.html" class="btn btn-primary"
+            ><i class="fas fa-home"></i> Voltar ao Início</a
+          >
+        </div>
+      </div>
     </main>
 
     <div class="modal-backdrop hidden" id="modal-backdrop"></div>
     <div class="perfume-modal hidden" id="perfume-modal">
-        <button class="close-modal-btn" onclick="closeModal()" aria-label="Fechar">&times;</button>
-        <div class="modal-content" id="modal-content">
-            </div>
+      <button
+        class="close-modal-btn"
+        onclick="closeModal()"
+        aria-label="Fechar"
+      >
+        &times;
+      </button>
+      <div class="modal-content" id="modal-content"></div>
     </div>
 
     <script src="../js/navbar.js"></script>
     <script src="../js/results.js"></script>
-</body>
+  </body>
 </html>

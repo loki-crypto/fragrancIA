@@ -1,103 +1,123 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Descubra seu perfume ideal respondendo nosso quiz personalizado">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Descubra seu perfume ideal respondendo nosso quiz personalizado"
+    />
     <title>Quiz - Fragancia</title>
-    
+
     <!-- CSS -->
-    <link rel="stylesheet" href="../css/global.css">
-    <link rel="stylesheet" href="../css/navbar.css">
-    <link rel="stylesheet" href="../css/quiz.css">
-    
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/navbar.css" />
+    <link rel="stylesheet" href="../css/quiz.css" />
+
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
     <!-- Navegação -->
     <header>
-        <nav class="navbar">
-            <a href="../index.html" class="logo">
-                Fragancia
-            </a>
-            
-            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            
-            <ul class="nav-links" id="nav-links">
-                <li><a href="../index.html">Início</a></li>
-                <li><a href="#features">Guias</a></li>
-                <li><a href="#stats">Favoritos</a></li>
-                <li>
-                    <div class="user-menu">
-                        <div class="user-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="user-dropdown">
-                            <a href="login.html">Fazer Login</a>
-                            <a href="cadastro.html">Criar Conta</a>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </nav>
+      <nav class="navbar">
+        <a href="../index.html" class="logo"> FragancIA </a>
+
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <ul class="nav-links" id="nav-links">
+          <li><a href="../index.html">Início</a></li>
+          <li><a href="#features">Guias</a></li>
+          <li><a href="#stats">Estatisticas</a></li>
+          <li>
+            <div class="user-menu">
+              <div class="user-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="user-dropdown">
+                <a href="login.html">Fazer Login</a>
+                <a href="cadastro.html">Criar Conta</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
     </header>
 
     <!-- Conteúdo Principal -->
     <main class="quiz-wrapper">
-        <div class="quiz-container">
-            <!-- Cabeçalho do Quiz -->
-            <div class="quiz-header">
-                <h1 id="main-title">Descubra seu perfume ideal!</h1>
-                <p>Responda as perguntas abaixo para receber recomendações personalizadas</p>
-            </div>
-
-            <!-- Barra de Progresso -->
-            <div class="progress-container">
-                <div class="progress-bar-wrapper">
-                    <div class="progress-bar" id="progress-bar"></div>
-                </div>
-                <div class="progress-info">
-                    <span>Pergunta <span id="current-question">1</span> de <span id="total-questions">5</span></span>
-                    <span id="progress-percentage">0%</span>
-                </div>
-            </div>
-
-            <!-- Bloco de Pergunta -->
-            <div class="question-block" id="question-block">
-                <h2 id="question-title"></h2>
-                <ul class="options-list" id="options-list"></ul>
-            </div>
-
-            <!-- Botões de Navegação -->
-            <div class="navigation-buttons">
-                <button class="nav-button" id="prev-button" disabled>
-                    <i class="fas fa-arrow-left"></i>
-                    Anterior
-                </button>
-                <button class="arrow-button" id="next-button" disabled>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                        <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
-                </button>
-            </div>
-
-            <!-- Tela de Conclusão (oculta inicialmente) -->
-            <div class="quiz-complete" id="quiz-complete" style="display: none;">
-                <h2>Quiz Finalizado!</h2>
-                <p>Estamos preparando suas recomendações personalizadas...</p>
-                <div class="loading-spinner"></div>
-            </div>
+      <div class="quiz-container">
+        <!-- Cabeçalho do Quiz -->
+        <div class="quiz-header">
+          <h1 id="main-title">Descubra seu perfume ideal!</h1>
+          <p>
+            Responda as perguntas abaixo para receber recomendações
+            personalizadas
+          </p>
         </div>
+
+        <!-- Barra de Progresso -->
+        <div class="progress-container">
+          <div class="progress-bar-wrapper">
+            <div class="progress-bar" id="progress-bar"></div>
+          </div>
+          <div class="progress-info">
+            <span
+              >Pergunta <span id="current-question">1</span> de
+              <span id="total-questions">5</span></span
+            >
+            <span id="progress-percentage">0%</span>
+          </div>
+        </div>
+
+        <!-- Bloco de Pergunta -->
+        <div class="question-block" id="question-block">
+          <h2 id="question-title"></h2>
+          <ul class="options-list" id="options-list"></ul>
+        </div>
+
+        <!-- Botões de Navegação -->
+        <div class="navigation-buttons">
+          <button class="nav-button" id="prev-button" disabled>
+            <i class="fas fa-arrow-left"></i>
+            Anterior
+          </button>
+          <button class="arrow-button" id="next-button" disabled>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Tela de Conclusão (oculta inicialmente) -->
+        <div class="quiz-complete" id="quiz-complete" style="display: none">
+          <h2>Quiz Finalizado!</h2>
+          <p>Estamos preparando suas recomendações personalizadas...</p>
+          <div class="loading-spinner"></div>
+        </div>
+      </div>
     </main>
 
     <!-- JavaScript -->
     <script src="../js/navbar.js"></script>
     <script src="../js/quiz.js"></script>
-</body>
+  </body>
 </html>
