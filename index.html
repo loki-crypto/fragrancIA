@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/navbar.css" />
     <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <!-- Font Awesome -->
     <link
@@ -35,15 +36,26 @@
         <ul class="nav-links" id="nav-links">
           <li><a href="index.html" class="active">Início</a></li>
           <li><a href="#features">Guias</a></li>
-          <li><a href="#stats">Estatisticas</a></li>
+          <li><a href="#stats">Estatísticas</a></li>
+
+          <!-- MENU DO USUÁRIO -->
           <li>
             <div class="user-menu">
               <div class="user-avatar">
                 <i class="fas fa-user"></i>
               </div>
+
               <div class="user-dropdown">
-                <a href="pages/login.html">Fazer Login</a>
-                <a href="pages/cadastro.html">Criar Conta</a>
+                <!-- VISÍVEIS SEM LOGIN -->
+                <a href="pages/login.html" id="login-btn">Fazer Login</a>
+                <a href="pages/cadastro.html" id="register-btn">Criar Conta</a>
+
+                <!-- VISÍVEIS APENAS LOGADO -->
+                <a href="pages/perfil.html" class="logged-only" style="display:none;">Perfil</a>
+                <a href="pages/historico.html" class="logged-only" style="display:none;">Histórico</a>
+                <a href="pages/favoritos.html" class="logged-only" style="display:none;">Favoritos</a>
+                <a href="#" id="logout-btn" class="logged-only" style="display:none; color:red; text-decoration: none; align-items: center; gap: 5px;">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout</a>
               </div>
             </div>
           </li>
@@ -175,7 +187,57 @@
       </section>
     </main>
 
-    <!-- JavaScript -->
+    <!-- SCRIPT DO LOGIN / DROPDOWN -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const userData = localStorage.getItem("user");
+        const token = localStorage.getItem("token");
+
+        const loginBtn = document.getElementById("login-btn");
+        const registerBtn = document.getElementById("register-btn");
+
+        const loggedOnlyItems = document.querySelectorAll(".logged-only");
+
+        if (token && userData) {
+          const user = JSON.parse(userData);
+
+          // Mostrar nome no avatar
+          const avatar = document.querySelector(".user-avatar");
+          const nome = user.nome.trim().split(" ");
+          const iniciais =
+            nome.length >= 2
+              ? nome[0][0] + nome[nome.length - 1][0]
+              : nome[0][0];
+                    
+          avatar.innerHTML = `<div class="avatar-circle">${iniciais.toUpperCase()}</div>`;
+
+
+          // Esconder login e cadastro
+          loginBtn.style.display = "none";
+          registerBtn.style.display = "none";
+
+          // Mostrar itens exclusivos
+          loggedOnlyItems.forEach(el => el.style.display = "block");
+
+          // Logout
+          const logout = document.getElementById("logout-btn");
+          logout.addEventListener("click", () => {
+            localStorage.removeItem("user");
+            localStorage.removeItem("token");
+            window.location.reload();
+          });
+
+        } else {
+          // Mostrar apenas login e cadastro
+          loginBtn.style.display = "block";
+          registerBtn.style.display = "block";
+
+          loggedOnlyItems.forEach(el => el.style.display = "none");
+        }
+      });
+    </script>
+
+    <script src="../js/api-config.js"></script>
     <script src="js/navbar.js"></script>
   </body>
 </html>

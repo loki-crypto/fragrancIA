@@ -186,8 +186,10 @@ function handlePreviousQuestion() {
 /**
  * Finaliza o quiz
  */
-function finishQuiz() {
-    // Salva as respostas no localStorage
+async function finishQuiz() {
+    const token = localStorage.getItem('token');
+    
+    // Salva localmente também (fallback)
     localStorage.setItem('quizAnswers', JSON.stringify(userAnswers));
     localStorage.setItem('quizDate', new Date().toISOString());
     
@@ -197,6 +199,17 @@ function finishQuiz() {
     document.querySelector('.progress-container').style.display = 'none';
     document.querySelector('.navigation-buttons').style.display = 'none';
     quizComplete.style.display = 'block';
+    
+    // Se estiver logado, salva na API
+    if (token) {
+        try {
+            await api.post('/quiz', userAnswers);
+            console.log('Quiz salvo na API com sucesso!');
+        } catch (error) {
+            console.error('Erro ao salvar quiz na API:', error);
+            // Continua mesmo com erro - já salvou no localStorage
+        }
+    }
     
     // Redireciona após 2 segundos
     setTimeout(() => {
