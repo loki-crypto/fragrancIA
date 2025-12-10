@@ -3,29 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Seu perfil e preferências de fragrâncias"
-    />
+    <meta name="description" content="Seu perfil e preferências de fragrâncias" />
     <title>Meu Perfil - Fragancia</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="../css/global.css" />
     <link rel="stylesheet" href="../css/navbar.css" />
     <link rel="stylesheet" href="../css/perfil.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   </head>
   <body>
     <!-- Navegação -->
     <header>
       <nav class="navbar">
-        <a href="../index.html" class="logo"> FragancIA </a>
+        <a href="../index.html" class="logo">Fragancia</a>
 
         <button class="mobile-menu-toggle" id="mobile-menu-toggle">
           <span></span>
@@ -35,14 +26,24 @@
 
         <ul class="nav-links" id="nav-links">
           <li><a href="../index.html">Início</a></li>
-          <li><a href="#features">Guias</a></li>
-          <li><a href="#stats">Favoritos</a></li>
+          <li><a href="../index.html#features">Guias</a></li>
+          <li><a href="favoritos.html">Favoritos</a></li>
           <li>
             <div class="user-menu">
-              <div class="user-avatar" id="nav-avatar">JD</div>
+              <div class="user-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+
               <div class="user-dropdown">
-                <a href="perfil.html">Meu Perfil</a>
-                <a href="#" id="logout-btn">Sair</a>
+                <!-- VISÍVEIS SEM LOGIN -->
+                <a href="login.html" id="login-btn">Fazer Login</a>
+                <a href="cadastro.html" id="register-btn">Criar Conta</a>
+
+                <!-- VISÍVEIS APENAS LOGADO -->
+                <a href="perfil.html" class="logged-only" style="display:none;">Perfil</a>
+                <a href="historico.html" class="logged-only" style="display:none;">Histórico</a>
+                <a href="favoritos.html" class="logged-only" style="display:none;">Favoritos</a>
+                <a href="#" id="logout-btn" class="logged-only" style="display:none;"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
               </div>
             </div>
           </li>
@@ -56,10 +57,12 @@
         <div class="perfil-grid">
           <!-- Sidebar do Perfil -->
           <aside class="perfil-sidebar">
-            <div class="user-avatar-large" id="profile-avatar">JD</div>
+            <div class="user-avatar-large" id="profile-avatar">
+              <i class="fas fa-user"></i>
+            </div>
             <div class="user-info">
-              <h2 id="user-name">João da Silva</h2>
-              <p id="user-email">joao@email.com</p>
+              <h2 id="user-name">Carregando...</h2>
+              <p id="user-email">carregando@email.com</p>
             </div>
 
             <!-- Navegação do Perfil -->
@@ -110,20 +113,20 @@
                 </h3>
                 <div class="user-stats">
                   <div class="stat-card">
-                    <h4>12</h4>
+                    <h4 id="stat-favoritos">0</h4>
                     <p>Perfumes Favoritos</p>
                   </div>
                   <div class="stat-card">
-                    <h4>5</h4>
+                    <h4 id="stat-quizzes">0</h4>
                     <p>Quizzes Realizados</p>
                   </div>
                   <div class="stat-card">
-                    <h4>28</h4>
+                    <h4 id="stat-avaliacoes">0</h4>
                     <p>Avaliações Feitas</p>
                   </div>
                   <div class="stat-card">
-                    <h4>3</h4>
-                    <p>Meses Membro</p>
+                    <h4 id="stat-membro">-</h4>
+                    <p>Membro desde</p>
                   </div>
                 </div>
               </div>
@@ -134,10 +137,7 @@
                   <i class="fas fa-edit"></i>
                   Editar Perfil
                 </h3>
-                <form
-                  class="perfil-form perfil-form-modern"
-                  id="edit-profile-form"
-                >
+                <form class="perfil-form perfil-form-modern" id="edit-profile-form">
                   <div class="form-card">
                     <div class="form-card-header">
                       <i class="fas fa-id-card"></i>
@@ -150,24 +150,14 @@
                           <i class="fas fa-user"></i>
                           Nome Completo
                         </label>
-                        <input
-                          type="text"
-                          id="edit-name"
-                          class="form-input"
-                          value="João da Silva"
-                        />
+                        <input type="text" id="edit-name" class="form-input" placeholder="Carregando..." />
                       </div>
                       <div class="form-group">
                         <label for="edit-email">
                           <i class="fas fa-envelope"></i>
                           Email
                         </label>
-                        <input
-                          type="email"
-                          id="edit-email"
-                          class="form-input"
-                          value="joao@email.com"
-                        />
+                        <input type="email" id="edit-email" class="form-input" placeholder="Carregando..." readonly />
                       </div>
                     </div>
 
@@ -177,26 +167,14 @@
                           <i class="fas fa-phone"></i>
                           Telefone
                         </label>
-                        <div class="input-with-icon">
-                          <i class="fas fa-mobile-alt input-icon"></i>
-                          <input
-                            type="tel"
-                            id="edit-phone"
-                            class="form-input"
-                            placeholder="(00) 00000-0000"
-                          />
-                        </div>
+                        <input type="tel" id="edit-phone" class="form-input" placeholder="(00) 00000-0000" />
                       </div>
                       <div class="form-group">
                         <label for="edit-birthdate">
                           <i class="fas fa-calendar-alt"></i>
                           Data de Nascimento
                         </label>
-                        <input
-                          type="date"
-                          id="edit-birthdate"
-                          class="form-input"
-                        />
+                        <input type="date" id="edit-birthdate" class="form-input" />
                       </div>
                     </div>
                   </div>
@@ -206,7 +184,7 @@
                       <i class="fas fa-save"></i>
                       Salvar Alterações
                     </button>
-                    <button type="button" class="btn btn-secondary">
+                    <button type="button" class="btn btn-secondary" id="cancel-btn">
                       <i class="fas fa-times"></i>
                       Cancelar
                     </button>
@@ -216,127 +194,55 @@
             </section>
 
             <!-- Seção: Favoritos -->
-            <section
-              id="section-favorites"
-              class="perfil-section"
-              style="display: none"
-            >
+            <section id="section-favorites" class="perfil-section" style="display: none">
               <h1>
                 <i class="fas fa-heart"></i>
                 Meus Perfumes Favoritos
               </h1>
 
-              <div class="favorites-grid">
-                <div class="favorite-item">
-                  <img
-                    src="../images/tom-ford-tobacco-vanille.png"
-                    alt="Tobacco Vanille"
-                  />
-                  <h4>Tobacco Vanille</h4>
-                  <p>Tom Ford</p>
-                </div>
-                <div class="favorite-item">
-                  <img
-                    src="../images/baccarat-rouge-540.png"
-                    alt="Baccarat Rouge 540"
-                  />
-                  <h4>Baccarat Rouge 540</h4>
-                  <p>Maison Francis Kurkdjian</p>
-                </div>
-                <div class="favorite-item">
-                  <img src="../images/nishane-ani.png" alt="Nishane Ani" />
-                  <h4>Nishane Ani</h4>
-                  <p>Nishane</p>
-                </div>
+              <div class="favorites-grid" id="favorites-grid">
+                <p style="text-align: center; color: #aaa;">Carregando favoritos...</p>
               </div>
             </section>
 
             <!-- Seção: Histórico -->
-            <section
-              id="section-history"
-              class="perfil-section"
-              style="display: none"
-            >
+            <section id="section-history" class="perfil-section" style="display: none">
               <h1>
                 <i class="fas fa-history"></i>
                 Histórico de Quizzes
               </h1>
 
-              <div class="quiz-history">
-                <div class="quiz-item">
-                  <div class="quiz-item-info">
-                    <h4>Quiz Completo - Perfume para Noite</h4>
-                    <p>Realizado em 15/11/2024 às 14:30</p>
-                  </div>
-                  <div class="quiz-item-actions">
-                    <button class="btn btn-sm btn-primary">
-                      Ver Resultados
-                    </button>
-                  </div>
-                </div>
-
-                <div class="quiz-item">
-                  <div class="quiz-item-info">
-                    <h4>Quiz Rápido - Fragrância Diária</h4>
-                    <p>Realizado em 10/11/2024 às 10:15</p>
-                  </div>
-                  <div class="quiz-item-actions">
-                    <button class="btn btn-sm btn-primary">
-                      Ver Resultados
-                    </button>
-                  </div>
-                </div>
-
-                <div class="quiz-item">
-                  <div class="quiz-item-info">
-                    <h4>Quiz Completo - Ocasião Especial</h4>
-                    <p>Realizado em 05/11/2024 às 16:45</p>
-                  </div>
-                  <div class="quiz-item-actions">
-                    <button class="btn btn-sm btn-primary">
-                      Ver Resultados
-                    </button>
-                  </div>
-                </div>
+              <div class="quiz-history" id="quiz-history">
+                <p style="text-align: center; color: #aaa;">Carregando histórico...</p>
               </div>
             </section>
 
             <!-- Seção: Preferências -->
-            <section
-              id="section-preferences"
-              class="perfil-section"
-              style="display: none"
-            >
+            <section id="section-preferences" class="perfil-section" style="display: none">
               <h1>
                 <i class="fas fa-cog"></i>
                 Preferências
               </h1>
 
-              <form class="perfil-form">
+              <form class="perfil-form" id="preferences-form">
                 <div class="perfil-section">
                   <h3>Notificações</h3>
                   <div class="form-group">
                     <div class="checkbox-group">
                       <input type="checkbox" id="notif-email" checked />
-                      <label for="notif-email"
-                        >Receber notificações por email</label
-                      >
+                      <label for="notif-email">Receber notificações por email</label>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="checkbox-group">
                       <input type="checkbox" id="notif-offers" checked />
-                      <label for="notif-offers"
-                        >Receber ofertas e promoções</label
-                      >
+                      <label for="notif-offers">Receber ofertas e promoções</label>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="checkbox-group">
                       <input type="checkbox" id="notif-newsletter" />
-                      <label for="notif-newsletter"
-                        >Assinar newsletter semanal</label
-                      >
+                      <label for="notif-newsletter">Assinar newsletter semanal</label>
                     </div>
                   </div>
                 </div>
@@ -352,9 +258,7 @@
                   <div class="form-group">
                     <div class="checkbox-group">
                       <input type="checkbox" id="privacy-favorites" />
-                      <label for="privacy-favorites"
-                        >Mostrar favoritos publicamente</label
-                      >
+                      <label for="privacy-favorites">Mostrar favoritos publicamente</label>
                     </div>
                   </div>
                 </div>
@@ -373,6 +277,54 @@
     </main>
 
     <!-- JavaScript -->
+     <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const userData = localStorage.getItem("user");
+        const token = localStorage.getItem("token");
+
+        const loginBtn = document.getElementById("login-btn");
+        const registerBtn = document.getElementById("register-btn");
+
+        const loggedOnlyItems = document.querySelectorAll(".logged-only");
+
+        if (token && userData) {
+          const user = JSON.parse(userData);
+
+          // Mostrar nome no avatar
+          const avatar = document.querySelector(".user-avatar");
+          const nome = user.nome.trim().split(" ");
+          const iniciais =
+            nome.length >= 2
+              ? nome[0][0] + nome[nome.length - 1][0]
+              : nome[0][0];
+                    
+          avatar.innerHTML = `<div class="avatar-circle">${iniciais.toUpperCase()}</div>`;
+
+
+          // Esconder login e cadastro
+          loginBtn.style.display = "none";
+          registerBtn.style.display = "none";
+
+          // Mostrar itens exclusivos
+          loggedOnlyItems.forEach(el => el.style.display = "block");
+
+          // Logout
+          const logout = document.getElementById("logout-btn");
+          logout.addEventListener("click", () => {
+            localStorage.removeItem("user");
+            localStorage.removeItem("token");
+            window.location.reload();
+          });
+
+        } else {
+          // Mostrar apenas login e cadastro
+          loginBtn.style.display = "block";
+          registerBtn.style.display = "block";
+
+          loggedOnlyItems.forEach(el => el.style.display = "none");
+        }
+      });
+    </script>
     <script src="../js/api-config.js"></script>
     <script src="../js/navbar.js"></script>
     <script src="../js/perfil.js"></script>

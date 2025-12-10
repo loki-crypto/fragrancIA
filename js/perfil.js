@@ -1,47 +1,54 @@
 /* ==========================================================================
-   LÓGICA DA PÁGINA DE PERFIL
+   LÓGICA DA PÁGINA DE PERFIL - INTEGRADO COM API
    ========================================================================== */
 
-// INICIALIZAÇÃO
 document.addEventListener("DOMContentLoaded", () => {
   initializeProfilePage();
 });
 
-/**
- * Inicializa a página de perfil
- */
-function initializeProfilePage() {
-  loadUserData();
+async function initializeProfilePage() {
+  const token = localStorage.getItem('token');
+  
+  if (!token) {
+    window.location.href = 'login.html';
+    return;
+  }
+  
+  await loadUserData();
   setupNavigation();
   setupFormHandlers();
+  loadFavorites();
+  loadQuizHistory();
 }
 
 /**
- * Carrega os dados do usuário
+ * Carrega os dados do usuário da API
  */
-function loadUserData() {
-  const user = localStorage.getItem("user");
-
-  if (!user) {
-    // Se não houver usuário logado, redireciona para login
-    window.location.href = "login.html";
-    return;
-  }
-
+async function loadUserData() {
   try {
-    const userData = JSON.parse(user);
-
-    // Atualiza informações do usuário na página
+    // BUSCA DA API
+    const userData = await api.get('/auth/me');
+    
+    // Atualiza localStorage
+    localStorage.setItem('user', JSON.stringify(userData));
+    
+    // Atualiza UI
     updateUserInfo(userData);
     updateUserAvatar(userData);
   } catch (error) {
-    console.error("Erro ao carregar dados do usuário:", error);
+    console.error('Erro ao carregar usuário:', error);
+    
+    // Se token expirou, redireciona
+    if (error.message.includes('Token')) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      window.location.href = 'login.html';
+    }
   }
 }
 
 /**
  * Atualiza as informações do usuário na UI
- * @param {Object} userData - Dados do usuário
  */
 function updateUserInfo(userData) {
   const nameElement = document.getElementById("user-name");
@@ -49,49 +56,30 @@ function updateUserInfo(userData) {
   const editNameInput = document.getElementById("edit-name");
   const editEmailInput = document.getElementById("edit-email");
 
-  if (nameElement && userData.name) {
-    nameElement.textContent = userData.name;
-  }
-
-  if (emailElement && userData.email) {
-    emailElement.textContent = userData.email;
-  }
-
-  if (editNameInput && userData.name) {
-    editNameInput.value = userData.name;
-  }
-
-  if (editEmailInput && userData.email) {
-    editEmailInput.value = userData.email;
-  }
+  if (nameElement) nameElement.textContent = userData.nome;
+  if (emailElement) emailElement.textContent = userData.email;
+  if (editNameInput) editNameInput.value = userData.nome;
+  if (editEmailInput) editEmailInput.value = userData.email;
 }
 
 /**
  * Atualiza o avatar do usuário
- * @param {Object} userData - Dados do usuário
  */
 function updateUserAvatar(userData) {
-  if (!userData.name) return;
+  if (!userData.nome) return;
 
-  // Gera iniciais do nome
-  const initials = userData.name
+  const initials = userData.nome
     .split(" ")
     .map((n) => n[0])
     .join("")
     .toUpperCase()
     .substring(0, 2);
 
-  // Atualiza avatar grande
   const profileAvatar = document.getElementById("profile-avatar");
-  if (profileAvatar) {
-    profileAvatar.textContent = initials;
-  }
+  if (profileAvatar) profileAvatar.textContent = initials;
 
-  // Atualiza avatar da navegação
   const navAvatar = document.getElementById("nav-avatar");
-  if (navAvatar) {
-    navAvatar.textContent = initials;
-  }
+  if (navAvatar) navAvatar.textContent = initials;
 }
 
 /**
@@ -107,23 +95,16 @@ function setupNavigation() {
 
       const sectionName = link.dataset.section;
 
-      // Remove active de todos os links
       navLinks.forEach((l) => l.classList.remove("active"));
-
-      // Adiciona active ao link clicado
       link.classList.add("active");
 
-      // Esconde todas as seções
       sections.forEach((section) => {
         section.style.display = "none";
       });
 
-      // Mostra a seção selecionada
       const targetSection = document.getElementById(`section-${sectionName}`);
       if (targetSection) {
         targetSection.style.display = "block";
-
-        // Rola para o topo da seção
         targetSection.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     });
@@ -134,19 +115,16 @@ function setupNavigation() {
  * Configura os manipuladores de formulários
  */
 function setupFormHandlers() {
-  // Formulário de edição de perfil
   const editForm = document.getElementById("edit-profile-form");
   if (editForm) {
     editForm.addEventListener("submit", handleProfileUpdate);
   }
 
-  // Botão de cancelar
   const cancelBtn = editForm?.querySelector(".btn-secondary");
   if (cancelBtn) {
     cancelBtn.addEventListener("click", handleCancel);
   }
 
-  // Botão de logout
   const logoutBtn = document.getElementById("logout-btn");
   if (logoutBtn) {
     logoutBtn.addEventListener("click", handleLogout);
@@ -155,39 +133,25 @@ function setupFormHandlers() {
 
 /**
  * Manipula o cancelamento da edição
- * @param {Event} e - Evento de clique
  */
 function handleCancel(e) {
   e.preventDefault();
 
   if (confirm("Deseja descartar as alterações?")) {
-    // Recarrega os dados originais
     loadUserData();
-
-    // Limpa os campos de telefone e data de nascimento
-    const phoneInput = document.getElementById("edit-phone");
-    const birthdateInput = document.getElementById("edit-birthdate");
-
-    if (phoneInput) phoneInput.value = "";
-    if (birthdateInput) birthdateInput.value = "";
-
     showNotification("Alterações descartadas", "info");
   }
 }
 
 /**
  * Manipula a atualização do perfil
- * @param {Event} e - Evento de submit
  */
-function handleProfileUpdate(e) {
+async function handleProfileUpdate(e) {
   e.preventDefault();
 
   const name = document.getElementById("edit-name").value;
   const email = document.getElementById("edit-email").value;
-  const phone = document.getElementById("edit-phone").value;
-  const birthdate = document.getElementById("edit-birthdate").value;
 
-  // Validações
   if (!name || name.length < 3) {
     showNotification("O nome deve ter no mínimo 3 caracteres", "error");
     return;
@@ -198,28 +162,13 @@ function handleProfileUpdate(e) {
     return;
   }
 
-  // Atualiza os dados no localStorage
-  const userData = {
-    name,
-    email,
-    phone,
-    birthdate,
-    loggedIn: true,
-  };
-
-  localStorage.setItem("user", JSON.stringify(userData));
-
-  // Atualiza a UI
-  updateUserInfo(userData);
-  updateUserAvatar(userData);
-
-  showNotification("Perfil atualizado com sucesso!", "success");
+  // AQUI VOCÊ PODE ADICIONAR ROTA DE UPDATE NO BACKEND
+  // Por enquanto, só atualiza localmente
+  showNotification("Perfil atualizado! (update API não implementado ainda)", "info");
 }
 
 /**
  * Valida formato de email
- * @param {string} email - Email a ser validado
- * @returns {boolean}
  */
 function validateEmail(email) {
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -228,17 +177,13 @@ function validateEmail(email) {
 
 /**
  * Manipula o logout
- * @param {Event} e - Evento de clique
  */
 function handleLogout(e) {
   e.preventDefault();
 
   if (confirm("Deseja realmente sair da sua conta?")) {
-    // Remove dados do usuário
+    localStorage.removeItem("token");
     localStorage.removeItem("user");
-    localStorage.removeItem("rememberMe");
-
-    // Redireciona para a home
     window.location.href = "../index.html";
   }
 }
@@ -246,79 +191,61 @@ function handleLogout(e) {
 /**
  * Carrega e exibe os favoritos
  */
-function loadFavorites() {
-  const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-  const favoritesGrid = document.querySelector(".favorites-grid");
-
-  if (!favoritesGrid) return;
-
-  if (favorites.length === 0) {
-    favoritesGrid.innerHTML = `
-            <p style="grid-column: 1 / -1; text-align: center; color: var(--text-secondary);">
-                Você ainda não tem perfumes favoritos. 
-                <a href="quiz.html" style="color: var(--color-primary);">Faça o quiz</a> 
-                para descobrir suas opções!
-            </p>
-        `;
-    return;
-  }
-
-  // Atualiza contador de favoritos
-  const favoritesStat = document.querySelector(".stat-card h4");
-  if (favoritesStat) {
-    favoritesStat.textContent = favorites.length;
+async function loadFavorites() {
+  const token = localStorage.getItem('token');
+  
+  if (!token) return;
+  
+  try {
+    const favoritos = await api.get('/favoritos');
+    
+    const favoritesStat = document.querySelector(".stat-card h4");
+    if (favoritesStat) {
+      favoritesStat.textContent = favoritos.length;
+    }
+  } catch (error) {
+    console.error('Erro ao carregar favoritos:', error);
   }
 }
 
 /**
  * Carrega histórico de quizzes
  */
-function loadQuizHistory() {
-  // Simula histórico de quizzes
-  // Em uma aplicação real, esses dados viriam de um backend
-  const quizHistory = JSON.parse(localStorage.getItem("quizHistory") || "[]");
-
-  // Se houver dados reais de quiz
-  const quizAnswers = localStorage.getItem("quizAnswers");
-  const quizDate = localStorage.getItem("quizDate");
-
-  if (quizAnswers && quizDate && quizHistory.length === 0) {
-    quizHistory.push({
-      date: quizDate,
-      type: "Quiz Completo",
-      results: 3,
-    });
-    localStorage.setItem("quizHistory", JSON.stringify(quizHistory));
-  }
-
-  // Atualiza contador de quizzes
-  const quizzesStat = document.querySelectorAll(".stat-card h4")[1];
-  if (quizzesStat) {
-    quizzesStat.textContent = quizHistory.length || 5;
+async function loadQuizHistory() {
+  const token = localStorage.getItem('token');
+  
+  if (!token) return;
+  
+  try {
+    const quizzes = await api.get('/quiz/historico');
+    
+    const quizzesStat = document.querySelectorAll(".stat-card h4")[1];
+    if (quizzesStat) {
+      quizzesStat.textContent = quizzes.length;
+    }
+  } catch (error) {
+    console.error('Erro ao carregar histórico:', error);
   }
 }
 
 /**
  * Mostra uma notificação
- * @param {string} message - Mensagem a ser exibida
- * @param {string} type - Tipo da notificação
  */
 function showNotification(message, type = "info") {
   const notification = document.createElement("div");
-  notification.className = `notification notification-${type}`;
   notification.textContent = message;
   notification.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        background-color: ${getNotificationColor(type)};
-        color: white;
-        padding: 1rem 2rem;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        z-index: 10000;
-        animation: slideIn 0.3s ease;
-    `;
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background-color: ${getNotificationColor(type)};
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 10000;
+    animation: slideIn 0.3s ease;
+  `;
 
   document.body.appendChild(notification);
 
@@ -328,11 +255,6 @@ function showNotification(message, type = "info") {
   }, 3000);
 }
 
-/**
- * Retorna a cor da notificação baseada no tipo
- * @param {string} type - Tipo da notificação
- * @returns {string} - Cor hexadecimal
- */
 function getNotificationColor(type) {
   const colors = {
     success: "#4caf50",
@@ -342,9 +264,3 @@ function getNotificationColor(type) {
   };
   return colors[type] || colors.info;
 }
-
-// Carrega dados adicionais ao inicializar
-document.addEventListener("DOMContentLoaded", () => {
-  loadFavorites();
-  loadQuizHistory();
-});

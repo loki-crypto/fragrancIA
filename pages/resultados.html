@@ -43,10 +43,17 @@
               <div class="user-avatar">
                 <i class="fas fa-user"></i>
               </div>
+
               <div class="user-dropdown">
-                <a href="perfil.html">Meu Perfil</a>
-                <a href="login.html">Fazer Login</a>
-                <a href="cadastro.html">Criar Conta</a>
+                <!-- VISÍVEIS SEM LOGIN -->
+                <a href="login.html" id="login-btn">Fazer Login</a>
+                <a href="cadastro.html" id="register-btn">Criar Conta</a>
+
+                <!-- VISÍVEIS APENAS LOGADO -->
+                <a href="perfil.html" class="logged-only" style="display:none;">Perfil</a>
+                <a href="historico.html" class="logged-only" style="display:none;">Histórico</a>
+                <a href="favoritos.html" class="logged-only" style="display:none;">Favoritos</a>
+                <a href="#" id="logout-btn" class="logged-only" style="display:none;"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
               </div>
             </div>
           </li>
@@ -93,6 +100,55 @@
       <div class="modal-content" id="modal-content"></div>
     </div>
     <div id="toast-container"></div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const userData = localStorage.getItem("user");
+        const token = localStorage.getItem("token");
+
+        const loginBtn = document.getElementById("login-btn");
+        const registerBtn = document.getElementById("register-btn");
+
+        const loggedOnlyItems = document.querySelectorAll(".logged-only");
+
+        if (token && userData) {
+          const user = JSON.parse(userData);
+
+          // Mostrar nome no avatar
+          const avatar = document.querySelector(".user-avatar");
+          const nome = user.nome.trim().split(" ");
+          const iniciais =
+            nome.length >= 2
+              ? nome[0][0] + nome[nome.length - 1][0]
+              : nome[0][0];
+                    
+          avatar.innerHTML = `<div class="avatar-circle">${iniciais.toUpperCase()}</div>`;
+
+
+          // Esconder login e cadastro
+          loginBtn.style.display = "none";
+          registerBtn.style.display = "none";
+
+          // Mostrar itens exclusivos
+          loggedOnlyItems.forEach(el => el.style.display = "block");
+
+          // Logout
+          const logout = document.getElementById("logout-btn");
+          logout.addEventListener("click", () => {
+            localStorage.removeItem("user");
+            localStorage.removeItem("token");
+            window.location.reload();
+          });
+
+        } else {
+          // Mostrar apenas login e cadastro
+          loginBtn.style.display = "block";
+          registerBtn.style.display = "block";
+
+          loggedOnlyItems.forEach(el => el.style.display = "none");
+        }
+      });
+    </script>
     <script src="../js/navbar.js"></script>
     <script src="../js/api-config.js"></script>
     <script src="../js/results.js"></script>
